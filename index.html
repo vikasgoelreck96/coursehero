@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="./course-validator.js"></script>
+        <script type="text/javascript">
+            function render() {
+
+                resetForm()
+                
+                try {
+                    courseObj = validateCourse(document.getElementById('course').value)
+                }
+                catch (err) {
+                    document.getElementById('errorDiv').textContent=err.message
+                    courseObj = null
+                }
+                if (courseObj != null) {
+                    document.getElementById('department').textContent=courseObj.department
+                    document.getElementById('course_number').textContent=courseObj.course_number
+                    document.getElementById('semester').textContent=courseObj.semester
+                    document.getElementById('year').textContent=courseObj.year
+                }
+            }
+        </script>
+    </head>
+<body>
+<div><span id="errorDiv"></span></div> 
+<input id="course" name="course" type="text" width="100">
+<input type="button" value="Validate" onclick="render()">
+
+<div>Department: <span id="department"></span></div> 
+<div>Course Number: <span id="course_number"></span></div> 
+<div>Semester: <span id="semester"></span></div> 
+<div>Year: <span id="year"></span></div> 
+</body>
+
+
+</html>
